@@ -7,6 +7,8 @@
  * To change this template use Tools | Options | Coding | Edit Standard Headers.
  */
 using System;
+using System.IO;
+using System.Reflection;
 using HarmonyLib;
 using KSP.Localization;
 using UnityEngine;
@@ -18,7 +20,10 @@ namespace KSP_AutoLoad {
 	/// </summary>
 	[KSPAddon(KSPAddon.Startup.Instantly, true)]
 	public class KSP_AutoLoad : MonoBehaviour {
-		private static string cfgFile = KSPUtil.ApplicationRootPath + "saves/AutoLoad.cfg";
+		private static string cfgFile = Path.Combine(
+			Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location),
+			"AutoLoad.cfg");
+
 		private bool didAutoLoad;
 
 		public KSP_AutoLoad() {
