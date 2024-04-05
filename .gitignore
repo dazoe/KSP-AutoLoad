@@ -1,6 +1,10 @@
 .vs/
 bin/
 obj/
+out/
 
 *.sdsettings
 *.dll
+
+Release.zip
+version.txt
