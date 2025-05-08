@@ -1,15 +1,14 @@
 
-clean:
-	rm -r ./bin/
-	rm -r ./obj/
-	rm -r ./out/
-	rm Release.zip
-	rm version.txt
+CS_FILES = $(shell find -type f -name "*.cs")
 
-bin/Debug/KSP-AutoLoad.dll:
+.PHONY: default clean debug debug release
+
+default: release
+
+bin/Debug/KSP-AutoLoad.dll: $(CS_FILES)
 	msbuild -p:Configuration=Debug
 
-bin/Release/KSP-AutoLoad.dll:
+bin/Release/KSP-AutoLoad.dll: $(CS_FILES)
 	msbuild -p:Configuration=Release
 
 version.txt: bin/Release/KSP-AutoLoad.dll
@@ -24,6 +23,9 @@ Release.zip: bin/Release/KSP-AutoLoad.dll bin/Release/info.json
 	cp bin/Release/KSP-AutoLoad.dll bin/Release/info.json out/GameData/KSP-AutoLoad/
 	bsdtar -cvf Release.zip --format=zip -C out GameData
 
+
+clean:
+	rm -r ./bin/ ./obj/ ./out/ Release.zip version.txt
 
 debug: bin/Debug/KSP-AutoLoad.dll
 release: Release.zip
