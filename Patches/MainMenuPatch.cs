@@ -14,7 +14,7 @@ namespace KSP_AutoLoad.Patches {
 		static void CreateAndStartGamePrefix() {
 			// User is creating a new game, clear previous autoload
 			KSP_AutoLoad.Log("MainMenu:CreateAndStartGame prefix");
-			KSP_AutoLoad.SetAutoLoad("", "'");
+			KSP_AutoLoad.SetAutoLoad("", "");
 		}
 	}
 }
